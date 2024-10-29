@@ -55,12 +55,18 @@ async function installGmsaasCli(gmsaasVersion) {
  * @param {string} gmsaasAPIToken Genymotion SaaS API Token
  */
 async function login(gmsaasAPIToken) {
+    core.info('Login gmsaas...');
     try {
-        core.info('Login gmsaas...');
-
         await exec.exec(`gmsaas auth token ${gmsaasAPIToken}`);
     } catch (error) {
         core.setFailed(`Failed to login: ${error.message}`);
+    }
+
+    core.info('Checking gmsaas authentication');
+    try {
+        await exec.exec('gmsaas doctor --auth');
+    } catch (error) {
+        core.setFailed(`Failed to authenticate: ${error.message}`);
     }
 }
 
