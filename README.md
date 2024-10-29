@@ -8,7 +8,7 @@ that credentials keys should be stored as [GitHub secrets](https://docs.github.c
 
 ## Inputs
 
-- `api_token` {string} {required} EAPI Token to authenticate to your Genymotion Cloud SaaS account. If you don't have an account please register on [https://cloud.geny.io](https://cloud.geny.io/?&utm_source=web-referral&utm_medium=docs&utm_campaign=githubactions&utm_content=signup) and create an [API Token](https://cloud.geny.io/api). `GMSAAS_APITOKEN` should be stored as a [GitHub secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-an-organization) and passed as in the
+- `api_token` {string} {required} API Token to authenticate to your Genymotion Cloud SaaS account. If you don't have an account please register on [https://cloud.geny.io](https://cloud.geny.io/?&utm_source=web-referral&utm_medium=docs&utm_campaign=githubactions&utm_content=signup) and create an [API Token](https://cloud.geny.io/api). `GMSAAS_APITOKEN` should be stored as a [GitHub secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-an-organization) and passed as in the
   example below. **Never** store your `GMSAAS_APITOKEN` as plain text in your YAML workflow.
 - `gmsaas_version` {string} {optional} Install a specific version of gmsaas (not recommended). Defaults to the latest version if not specified.
 - `recipe_uuid` {string} {optional} Recipe UUID is the identifier used when starting an instance; it can be retrieved using `gmsaas recipes list`,
