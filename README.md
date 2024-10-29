@@ -52,7 +52,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Start Genymotion Cloud SaaS instance
-        uses:  genymobile/genymotion-saas-github-action@v0.4
+        uses:  genymobile/genymotion-saas-github-action@v1
         with:
           api_token: ${{ secrets.GMSAAS_APITOKEN }}
           recipe_uuid: ea5fda48-fa8b-48c1-8acc-07d910856141 # Google Pixel XL 8.1
@@ -92,7 +92,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Start Genymotion Cloud SaaS instance
-        uses:  genymobile/genymotion-saas-github-action@v0.4
+        uses:  genymobile/genymotion-saas-github-action@v1
         with:
           api_token: ${{ secrets.GMSAAS_APITOKEN }}
           recipe_uuid: ${{ matrix.recipe_uuid }}
@@ -127,7 +127,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Start Genymotion Cloud SaaS instance
-        uses:  genymobile/genymotion-saas-github-action@v0.4
+        uses:  genymobile/genymotion-saas-github-action@v1
         with:
           api_token: ${{ secrets.GMSAAS_APITOKEN }}
           recipe_uuid: ea5fda48-fa8b-48c1-8acc-07d910856141 # Google Pixel XL 8.1
