@@ -7006,7 +7006,7 @@ const execSync = (__nccwpck_require__(2081).execSync);
 const path = __nccwpck_require__(1017);
 const semver = __nccwpck_require__(673);
 
-const MIN_GMSAAS_VERSION = '1.5.0';
+const MIN_GMSAAS_VERSION = '1.12.0';
 
 /**
  * Check if gmsaas version fits with the minimum required version
@@ -7052,14 +7052,13 @@ async function installGmsaasCli(gmsaasVersion) {
 
 /**
  * Log in
- * @param {string} gmsaasEmail Email of your Genymotion Cloud SaaS account.
- * @param {string} gmsaasPassword Password of your Genymotion Cloud SaaS account.
+ * @param {string} gmsaasAPIToken Genymotion SaaS API Token
  */
-async function login(gmsaasEmail, gmsaasPassword) {
+async function login(gmsaasAPIToken) {
     try {
         core.info('Login gmsaas...');
 
-        await exec.exec(`gmsaas auth login ${gmsaasEmail} ${gmsaasPassword}`);
+        await exec.exec(`gmsaas auth token ${gmsaasAPIToken}`);
     } catch (error) {
         core.setFailed(`Failed to login: ${error.message}`);
     }
@@ -7115,8 +7114,7 @@ async function startInstance(recipeUuid, adbSerialPort, instanceIndex) {
 
 async function run() {
     const gmsaasVersion = core.getInput('gmsaas_version');
-    const gmsaasEmail = core.getInput('email', {required: true});
-    const gmsaasPassword = core.getInput('password', {required: true});
+    const gmsaasAPIToken = core.getInput('api_token', {required: true});
     const recipeUuid = core.getInput('recipe_uuid');
     const adbSerialPort = core.getInput('adb_serial_port');
     const instanceIndex = core.getInput('instance_index');
@@ -7127,7 +7125,7 @@ async function run() {
 
             await configure();
 
-            await login(gmsaasEmail, gmsaasPassword);
+            await login(gmsaasAPIToken);
         }
 
         if (recipeUuid) {

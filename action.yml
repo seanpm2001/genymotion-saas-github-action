@@ -4,11 +4,8 @@ description: |-
   Launch Android devices on Genymotion SaaS.
   Run your automation tests (Appium, Espresso and others) on those devices.
 inputs:
-  email:
-    description: Email of your Genymotion Cloud SaaS account, if you don't have an account please create it first on [https://cloud.geny.io](https://cloud.geny.io/?&utm_source=web-referral&utm_medium=docs&utm_campaign=githubactions&utm_content=signup).
-    required: true
-  password:
-    description: Password of your Genymotion Cloud SaaS account.
+  api_token:
+    description: API Token to authenticate to your Genymotion Cloud SaaS account. If you don't have an account please register on [https://cloud.geny.io](https://cloud.geny.io/?&utm_source=web-referral&utm_medium=docs&utm_campaign=githubactions&utm_content=signup) and create an [API Token](https://cloud.geny.io/api)
     required: true
   recipe_uuid:
     description: |-
