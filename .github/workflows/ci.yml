@@ -4,10 +4,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
+          node-version: '20'
       - run: npm install
       - run: npm run lint
 
@@ -21,26 +21,25 @@ jobs:
     name: With Adb Serial Port
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.10.11"
+          python-version: "3.12.0"
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Start Genymotion Cloud SaaS instance
         uses: ./
         with:
-          email: ${{ secrets.GMSAAS_EMAIL }}
-          password: ${{ secrets.GMSAAS_PASSWORD }}
+          api_token: ${{ secrets.GMSAAS_APITOKEN }}
           recipe_uuid: ${{ matrix.recipe_uuid }}
           adb_serial_port: "47021"
   
@@ -55,27 +54,26 @@ jobs:
     name: Start Several devices
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.10.11"
+          python-version: "3.12.0"
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Genymotion
         uses: ./
         with:
-          email: ${{ secrets.GMSAAS_EMAIL }}
-          password: ${{ secrets.GMSAAS_PASSWORD }}
           recipe_uuid: ${{ matrix.recipe_uuid }}
+          api_token: ${{ secrets.GMSAAS_APITOKEN }}
 
   test-integration-specific_gmsaas_version:
     runs-on: ubuntu-latest
@@ -87,28 +85,26 @@ jobs:
     name: Use a specific gmsaas version
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.10.11"
+          python-version: "3.12.0"
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Genymotion
         uses: ./
         with:
-          gmsaas_version: "1.6.0"
-          email: ${{ secrets.GMSAAS_EMAIL }}
-          password: ${{ secrets.GMSAAS_PASSWORD }}
-          recipe_uuid: ${{ matrix.recipe_uuid }}
+          gmsaas_version: "1.12.0"
+          api_token: ${{ secrets.GMSAAS_APITOKEN }}
 
 
   test-integration-install_configure_gmsaas:
@@ -117,23 +113,22 @@ jobs:
     name: Only install and configure gmsaas
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.10.11"
+          python-version: "3.12.0"
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Genymotion
         uses: ./
         with:
-          email: ${{ secrets.GMSAAS_EMAIL }}
-          password: ${{ secrets.GMSAAS_PASSWORD }}
+          api_token: ${{ secrets.GMSAAS_APITOKEN }}
